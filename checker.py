@@ -4,6 +4,7 @@ import threading
 import queue
 import signal
 from rich.console import Console
+import urllib.parse
 
 console = Console()
 
@@ -71,10 +72,9 @@ def get(proxy):
     # Use public CORS proxy as a regular proxy in case if onionoo.torproject.org is unreachable
     urls = (
         baseurl,
-        "https://corsbypasser.herokuapp.com/" + baseurl,
-        "https://corsanywhere.herokuapp.com/" + baseurl,
-        "https://tauron.herokuapp.com/" + baseurl,
-        "https://cors-anywhere2.herokuapp.com/" + baseurl,
+        "https://icors.vercel.app/?" + urllib.parse.quote(baseurl),
+        "https://github.com/ValdikSS/tor-onionoo-mirror/raw/master/details-running-relays-fingerprint-address-only.json",
+        "https://bitbucket.org/ValdikSS/tor-onionoo-mirror/raw/master/details-running-relays-fingerprint-address-only.json"
     )
 
     for url in urls:
